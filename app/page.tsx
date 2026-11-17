@@ -91,15 +91,23 @@ export default function Home() {
           </div>
 
           <div className="hero-dual-block">
-            {/* Block 1: Flight Corridor */}
+            {/* Block 1: Flight Corridor with Image */}
             <div className="hero-mini-card">
               <div>
-                <div className="mini-card-tag">
-                  <span className="pulse" /> Scheduled Flight Corridor
+                <div
+                  className="mini-card-photo"
+                  style={{
+                    backgroundImage:
+                      'url("https://images.unsplash.com/photo-1569154941061-e231b4725ef1?auto=format&fit=crop&w=800&q=80")',
+                  }}
+                >
+                  <div className="mini-card-photo-tag">
+                    <span className="pulse" /> Heathrow Apron (TW6)
+                  </div>
                 </div>
                 <h3>Heathrow Air Cargo (LHR)</h3>
                 <p>
-                  Direct runway apron tenders on scheduled widebody rotations to JFK, DWC, and SIN with 4-hour late cut-off windows.
+                  Direct runway apron tenders on scheduled widebody rotations to JFK, DWC, and SIN with 4-hour cut-off windows.
                 </p>
               </div>
               <div className="mini-card-specs">
@@ -108,11 +116,19 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Block 2: London Bonded Hub */}
+            {/* Block 2: London Bonded Hub with Image */}
             <div className="hero-mini-card">
               <div>
-                <div className="mini-card-tag">
-                  <span className="pulse" /> HMRC Type U Authorized
+                <div
+                  className="mini-card-photo"
+                  style={{
+                    backgroundImage:
+                      'url("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80")',
+                  }}
+                >
+                  <div className="mini-card-photo-tag">
+                    <span className="pulse" /> 45a Great North Way (NW4)
+                  </div>
                 </div>
                 <h3>London Terminal (NW4 1PT)</h3>
                 <p>
@@ -172,6 +188,63 @@ export default function Home() {
             <div className="intro-feature">
               <b>Priority Flight Allocations</b>
               <span>Fixed weekly block space allocations on major cargo rotations ex-Heathrow and Stansted.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ASSET VISUAL SHOWCASE: CINEMATIC IMAGERY STRIP */}
+      <section className="asset-showcase">
+        <div className="asset-showcase-grid">
+          {/* Visual Card 1: Air Cargo Aviation */}
+          <div className="asset-photo-card">
+            <div
+              className="asset-photo"
+              style={{
+                backgroundImage:
+                  'url("https://images.unsplash.com/photo-1524592714635-d77511a4834d?auto=format&fit=crop&w=1200&q=80")',
+              }}
+            >
+              <div className="asset-photo-badge">
+                HEATHROW AIRSIDE T4 • 4-HOUR CARGO TENDER
+              </div>
+            </div>
+            <div className="asset-card-details">
+              <div>
+                <h4>Scheduled Cargo Flight Infrastructure</h4>
+                <p>
+                  Direct runway apron access, Regulated Agent screening, and scheduled transatlantic freighter bridges.
+                </p>
+              </div>
+              <Link href="/air-freight" className="text-link" style={{ whiteSpace: "nowrap" }}>
+                Flight operations <Arrow />
+              </Link>
+            </div>
+          </div>
+
+          {/* Visual Card 2: London Bonded Hub */}
+          <div className="asset-photo-card">
+            <div
+              className="asset-photo"
+              style={{
+                backgroundImage:
+                  'url("https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80")',
+              }}
+            >
+              <div className="asset-photo-badge">
+                45A GREAT NORTH WAY (NW4 1PT) • HMRC TYPE U
+              </div>
+            </div>
+            <div className="asset-card-details">
+              <div>
+                <h4>125,000 sq ft London Storage Terminal</h4>
+                <p>
+                  14,000 VNA narrow-aisle pallet slots and 16 hydraulic docks with indefinite import duty and VAT deferral.
+                </p>
+              </div>
+              <Link href="/warehousing" className="text-link" style={{ whiteSpace: "nowrap" }}>
+                Terminal specs <Arrow />
+              </Link>
             </div>
           </div>
         </div>

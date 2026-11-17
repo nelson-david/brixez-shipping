@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Plane, Warehouse, ShieldCheck, MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
+import BrixezLogo from "./BrixezLogo";
 
 export default function Footer() {
   return (
@@ -8,14 +9,9 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-mono font-bold text-sm shadow-sm">
-                BX
-              </div>
-              <span className="font-extrabold text-xl tracking-tight text-white font-sans">
-                BRIXEZ
-              </span>
-            </div>
+            <Link href="/" className="inline-block hover:opacity-90 transition-opacity">
+              <BrixezLogo size={38} variant="light" />
+            </Link>
             
             <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
               Global commercial flight cargo and high-density HMRC-bonded warehousing. Coordinated from our London logistics terminal for mission-critical supply chains.

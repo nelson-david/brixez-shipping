@@ -1,0 +1,33 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bx-grad-primary" x1="6" y1="6" x2="42" y2="42" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#3b82f6" />
+      <stop offset="100%" stopColor="#1d4ed8" />
+    </linearGradient>
+    <linearGradient id="bx-grad-wing" x1="16" y1="12" x2="38" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#60a5fa" />
+      <stop offset="100%" stopColor="#2563eb" />
+    </linearGradient>
+    <linearGradient id="bx-grad-cyan" x1="18" y1="26" x2="40" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#38bdf8" />
+      <stop offset="100%" stopColor="#0284c7" />
+    </linearGradient>
+  </defs>
+
+  <!-- Dark Deep Navy Squircle -->
+  <rect x="1" y="1" width="46" height="46" rx="12" fill="#0b1329" stroke="#2563eb" stroke-width="1.5" />
+
+  <!-- Structural Left Pillar of the 'B' -->
+  <path d="M13 14C13 12.8954 13.8954 12 15 12H19C20.1046 12 21 12.8954 21 14V34C21 35.1046 20.1046 36 19 36H15C13.8954 36 13 35.1046 13 34V14Z" fill="url(#bx-grad-primary)" />
+
+  <!-- Upper Aero-Wing (Flight) -->
+  <path d="M23 13C23 12.4477 23.4477 12 24 12H31C34.866 12 38 15.134 38 19C38 22.866 34.866 26 31 26H24C23.4477 26 23 25.5523 23 25V13Z" fill="url(#bx-grad-wing)" />
+  <path d="M27 16H30.5C32.433 16 34 17.3431 34 19C34 20.6569 32.433 22 30.5 22H27V16Z" fill="#0b1329" />
+
+  <!-- Lower Forward-Thrust Chevron (Bonded Warehousing Racking) -->
+  <path d="M23 25C23 24.4477 23.4477 24 24 24H33C37.4183 24 41 27.5817 41 32C41 36.4183 37.4183 40 33 40H24C23.4477 40 23 39.5523 23 39V25Z" fill="url(#bx-grad-cyan)" />
+  <path d="M27 28H32.5C34.9853 28 37 29.7909 37 32C37 34.2091 34.9853 36 32.5 36H27V28Z" fill="#0b1329" />
+
+  <!-- Speed Angle Ascent Dot -->
+  <circle cx="36" cy="12" r="2.5" fill="#60a5fa" />
+</svg>

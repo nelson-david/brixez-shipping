@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Phone, ArrowRight, Menu, X, Plane, Warehouse, Search, ShieldCheck, Clock } from "lucide-react";
+import BrixezLogo from "./BrixezLogo";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -40,18 +41,8 @@ export default function Navbar() {
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
         {/* Brand Lockup */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center text-white font-mono font-bold text-base shadow-sm group-hover:bg-blue-700 transition-colors">
-            BX
-          </div>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-xl tracking-tight text-slate-950 font-display leading-none">
-              BRIXEZ
-            </span>
-            <span className="text-[10px] uppercase font-mono tracking-wider text-slate-500 mt-1">
-              Flight Cargo &amp; Warehousing
-            </span>
-          </div>
+        <Link href="/" className="group transition-opacity hover:opacity-95">
+          <BrixezLogo size={40} />
         </Link>
 
         {/* Desktop Navigation */}

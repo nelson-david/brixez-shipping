@@ -8,20 +8,42 @@ import Footer from "./components/Footer";
 const Arrow = () => <span className="arrow">↗</span>;
 
 export default function Home() {
-  const [tracking, setTracking] = useState("");
-  const [notice, setNotice] = useState("");
+  const [tracking, setTracking] = useState("BRX-9482-GB");
+  const [telemetry, setTelemetry] = useState({
+    code: "BRX-9482-GB",
+    sector: "London Heathrow (LHR) → New York (JFK)",
+    carrier: "Flight BX-402 (Boeing 777F)",
+    status: "Airborne — Transatlantic Sector",
+    eta: "Today, 18:45 EST",
+    custody: "Heathrow Cargo Apron Stand 14",
+    compliance: "UK CDS Green Channel Export Clearance"
+  });
 
-  const track = (e: React.FormEvent) => {
+  const handleTrack = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!tracking.trim()) {
-      setNotice("Enter a shipment or airway bill reference.");
-      return;
-    }
     const q = tracking.trim().toUpperCase();
+    if (!q) return;
+
     if (q.includes("WH") || q.includes("LON") || q.includes("7710")) {
-      setNotice(`Consignment ${q} held in Bonded Racking at 45a Great North Way (NW4 1PT) — cleared under HMRC Type U for immediate call-off.`);
+      setTelemetry({
+        code: q.includes("LON") ? q : "LON-WH-7710",
+        sector: "Rotterdam Europort → London Terminal",
+        carrier: "Dedicated Articulated Inbound Unit",
+        status: "Held in Bonded Racking — Duty Suspended",
+        eta: "In Facility (Available for Call-Off)",
+        custody: "45a Great North Way (Aisle 4, Bay 14)",
+        compliance: "HMRC Type U Customs Warehouse (Ref: CW-GB-7710)"
+      });
     } else {
-      setNotice(`Waybill ${q.startsWith("BRX") ? q : `BRX-${q}`} en route to New York JFK on Flight BX-402 — arriving as planned.`);
+      setTelemetry({
+        code: q.startsWith("BRX") ? q : `BRX-${q}`,
+        sector: "London Heathrow (LHR) → New York (JFK)",
+        carrier: "Flight BX-402 (Boeing 777F)",
+        status: "Airborne — Transatlantic Sector",
+        eta: "Today, 18:45 EST",
+        custody: "Heathrow Cargo Apron Stand 14",
+        compliance: "UK CDS Green Channel Export Clearance"
+      });
     }
   };
 
@@ -29,21 +51,23 @@ export default function Home() {
     <main>
       <Navbar />
 
-      {/* HERO SECTION */}
+      {/* SHAPESHIFTED HERO: FULL-WIDTH COMMAND HEADLINE + DUAL OPERATIONS BLOCK */}
       <section className="hero">
-        <div className="eyebrow">
-          Independent Freight <span>•</span> London · Heathrow · NW4 1PT
+        <div className="hero-header">
+          <div className="eyebrow">
+            London Dispatch <span>•</span> 45a Great North Way (NW4 1PT) <span>•</span> Heathrow Air Cargo
+          </div>
+          <h1>
+            Flight cargo &amp; bonded storage,
+            <br />
+            engineered with <em>exactness.</em>
+          </h1>
         </div>
 
-        <div className="hero-grid">
+        <div className="hero-body-grid">
           <div>
-            <h1>
-              Flight shipping.
-              <br />
-              Bonded <em>storage.</em>
-            </h1>
             <p className="hero-copy">
-              A dedicated logistics partner for trade that demands exact timing. We orchestrate daily air cargo departures from London Heathrow alongside 125,000 sq ft of HMRC-bonded warehousing at our London headquarters.
+              A specialized logistics partner for commercial airfreight and HMRC customs-bonded warehousing. We coordinate high-velocity scheduled flight departures from London Heathrow alongside 125,000 sq ft of high-density storage at our London headquarters.
             </p>
             <div className="hero-actions">
               <Link href="/quote" className="button dark">
@@ -52,151 +76,197 @@ export default function Home() {
               <Link href="/about" className="text-link">
                 Meet Brixez <Arrow />
               </Link>
+              <a
+                href="tel:+447853573182"
+                style={{
+                  fontFamily: "var(--font-dm-mono)",
+                  fontSize: "12px",
+                  color: "var(--ink)",
+                  fontWeight: 500
+                }}
+              >
+                +44 785 357 3182
+              </a>
             </div>
           </div>
 
-          {/* TWEAKED HERO CARD (Distinct from Velvoxe's raw photo with tag) */}
-          <div className="hero-card">
-            <div>
-              <div className="hero-card-tag">
-                <span className="pulse" /> Live Heathrow Cargo Gateway
+          <div className="hero-dual-block">
+            {/* Block 1: Flight Corridor */}
+            <div className="hero-mini-card">
+              <div>
+                <div className="mini-card-tag">
+                  <span className="pulse" /> Scheduled Flight Corridor
+                </div>
+                <h3>Heathrow Air Cargo (LHR)</h3>
+                <p>
+                  Direct runway apron tenders on scheduled widebody rotations to JFK, DWC, and SIN with 4-hour late cut-off windows.
+                </p>
               </div>
-              <h3>Scheduled Rotation BX-402</h3>
-              <p>
-                London Heathrow (LHR) → New York (JFK) via Boeing 777F freighter. Direct runway apron tender with 4-hour cargo cut-off.
-              </p>
+              <div className="mini-card-specs">
+                <span>Flight BX-402 • B777F</span>
+                <span style={{ color: "var(--accent)" }}>4h Cut-off</span>
+              </div>
             </div>
 
-            <div className="hero-card-meta">
+            {/* Block 2: London Bonded Hub */}
+            <div className="hero-mini-card">
               <div>
-                <b>125,000 sq ft</b>
-                <span>Bonded London Hub (NW4 1PT)</span>
+                <div className="mini-card-tag">
+                  <span className="pulse" /> HMRC Type U Authorized
+                </div>
+                <h3>London Terminal (NW4 1PT)</h3>
+                <p>
+                  125,000 sq ft high-bay warehouse at 45a Great North Way. Complete UK customs duty and import VAT suspension.
+                </p>
               </div>
-              <div>
-                <b>HMRC Type U</b>
-                <span>Duty &amp; VAT Deferral</span>
+              <div className="mini-card-specs">
+                <span>14,000 VNA Pallet Slots</span>
+                <span style={{ color: "var(--accent)" }}>16 Docks</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* STATS STRIP */}
+        {/* ARCHITECTURAL METRICS STRIP */}
         <div className="hero-stats">
           <div>
             <b>125k</b>
-            <span>sq ft bonded storage</span>
+            <span>sq ft bonded London storage</span>
           </div>
           <div>
             <b>4h</b>
-            <span>airside tender cut-off</span>
+            <span>Heathrow apron tender cut-off</span>
           </div>
           <div>
             <b>99.2%</b>
-            <span>schedule fidelity</span>
+            <span>scheduled flight fidelity</span>
           </div>
           <div>
             <b>24/7</b>
-            <span>London dispatch support</span>
+            <span>London operations desk</span>
           </div>
         </div>
       </section>
 
-      {/* INTRO SECTION */}
+      {/* SHAPESHIFTED INTRO: 50/50 EDITORIAL SPLIT */}
       <section className="intro">
-        <p className="eyebrow">What we move</p>
         <div>
+          <p className="eyebrow">Operating philosophy</p>
           <h2>
-            Air cargo and storage
+            Air cargo and custody
             <br />
             should feel like a <em>well-kept promise.</em>
           </h2>
+        </div>
+
+        <div className="intro-right">
           <p className="body-copy">
-            From an emergency AOG aerospace component to thousands of pallets held under UK customs bond, we combine local operational command with global flight capacity. No black boxes. No passed-around problems.
+            From an emergency AOG aerospace component needing same-day flight boarding to thousands of pallets held under UK customs bond, we combine local operational authority with direct flight capacity. No black boxes. No passed-around problems.
           </p>
+
+          <div className="intro-features">
+            <div className="intro-feature">
+              <b>Owned Physical Custody</b>
+              <span>Directly operating 45a Great North Way with biometric security and narrow-aisle racking.</span>
+            </div>
+            <div className="intro-feature">
+              <b>Priority Flight Allocations</b>
+              <span>Fixed weekly block space allocations on major cargo rotations ex-Heathrow and Stansted.</span>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* CAPABILITIES (TWEAKED 2-COLUMN ASYMMETRIC GRID INSTEAD OF 1-COL ROWS) */}
+      {/* SHAPESHIFTED CAPABILITIES: 2 LARGE PRIMARY + 3 SECONDARY */}
       <section className="capabilities">
         <div className="section-top">
-          <p className="eyebrow">Core disciplines</p>
+          <p className="eyebrow">Operational disciplines</p>
           <Link className="text-link" href="/services">
-            View all services <Arrow />
+            View all capabilities <Arrow />
           </Link>
         </div>
 
-        <div className="capabilities-grid">
-          <Link href="/air-freight" className="cap-card">
+        {/* Row 1: The Two Core Request Services */}
+        <div className="capabilities-primary">
+          <Link href="/air-freight" className="cap-card-large">
             <div>
               <div className="cap-head">
                 <span className="cap-num">01</span>
                 <span className="cap-tag">Air Logistics</span>
               </div>
-              <h3>Flight shipping &amp; air cargo</h3>
+              <h3>Commercial flight shipping &amp; airfreight</h3>
               <p>
-                Priority airfreight, scheduled consolidations, and Boeing 777F charters departing London Heathrow and Stansted.
+                Priority scheduled widebody consolidations, dedicated Boeing 777F freighter rotations, and emergency Next-Flight-Out (NFO) air cargo departures directly from London Heathrow.
               </p>
             </div>
             <div className="cap-specs">
-              <span>Next-Flight-Out (NFO) &amp; scheduled lines</span>
+              <span>Next-Flight-Out (NFO) &amp; full freighter charters</span>
               <Arrow />
             </div>
           </Link>
 
-          <Link href="/warehousing" className="cap-card">
+          <Link href="/warehousing" className="cap-card-large">
             <div>
               <div className="cap-head">
                 <span className="cap-num">02</span>
                 <span className="cap-tag">London Terminal</span>
               </div>
-              <h3>HMRC bonded warehousing</h3>
+              <h3>HMRC Type U bonded warehousing</h3>
               <p>
-                125,000 sq ft flagship storage facility at 45a Great North Way (NW4 1PT) with HMRC Type U duty and import VAT suspension.
+                Flagship 125,000 sq ft logistics facility at 45a Great North Way, London (NW4 1PT). Authorised by HMRC for indefinite customs duty and import VAT suspension.
               </p>
             </div>
             <div className="cap-specs">
-              <span>14,000 pallet slots • 16 dock bays</span>
-              <Arrow />
-            </div>
-          </Link>
-
-          <Link href="/services" className="cap-card">
-            <div>
-              <div className="cap-head">
-                <span className="cap-num">03</span>
-                <span className="cap-tag">Compliance</span>
-              </div>
-              <h3>Customs brokerage &amp; CDS</h3>
-              <p>
-                Direct electronic declarations to the UK Customs Declaration Service (CDS) for instant green routing and bonded discharges.
-              </p>
-            </div>
-            <div className="cap-specs">
-              <span>AEO-F accredited clearance</span>
-              <Arrow />
-            </div>
-          </Link>
-
-          <Link href="/contact" className="cap-card">
-            <div>
-              <div className="cap-head">
-                <span className="cap-num">04</span>
-                <span className="cap-tag">Time Critical</span>
-              </div>
-              <h3>Aerospace AOG &amp; rapid dispatch</h3>
-              <p>
-                24/7 dedicated dispatch desk responding to urgent aerospace emergencies with immediate collection and on-board couriers.
-              </p>
-            </div>
-            <div className="cap-specs">
-              <span>15-minute response desk</span>
+              <span>14,000 VNA slots • 16 hydraulic dock bays</span>
               <Arrow />
             </div>
           </Link>
         </div>
+
+        {/* Row 2: Three Complementary Disciplines */}
+        <div className="capabilities-secondary">
+          <div className="cap-card-small">
+            <div>
+              <span className="cap-num" style={{ display: "block", marginBottom: "10px" }}>03</span>
+              <h3>Customs CDS clearance</h3>
+              <p>
+                Direct electronic declaration filing via the Customs Declaration Service for instant green-channel routing.
+              </p>
+            </div>
+            <span style={{ fontSize: "11px", fontFamily: "var(--font-dm-mono)", color: "var(--accent)" }}>
+              AEO-F accredited clearance
+            </span>
+          </div>
+
+          <div className="cap-card-small">
+            <div>
+              <span className="cap-num" style={{ display: "block", marginBottom: "10px" }}>04</span>
+              <h3>Aerospace AOG rapid dispatch</h3>
+              <p>
+                24/7 emergency response for grounded aircraft, medical avionics, and high-value manufacturing parts.
+              </p>
+            </div>
+            <span style={{ fontSize: "11px", fontFamily: "var(--font-dm-mono)", color: "var(--accent)" }}>
+              15-min dispatch activation
+            </span>
+          </div>
+
+          <div className="cap-card-small">
+            <div>
+              <span className="cap-num" style={{ display: "block", marginBottom: "10px" }}>05</span>
+              <h3>GDP pharmaceutical cold chain</h3>
+              <p>
+                Strictly monitored temperature-controlled air freight and bonded warehouse storage (+2°C to +8°C and -20°C).
+              </p>
+            </div>
+            <span style={{ fontSize: "11px", fontFamily: "var(--font-dm-mono)", color: "var(--accent)" }}>
+              Calibrated telemetry logs
+            </span>
+          </div>
+        </div>
       </section>
 
-      {/* PROCESS SECTION */}
+      {/* SHAPESHIFTED METHOD / PROCESS */}
       <section className="process">
         <div>
           <p className="eyebrow">Our method</p>
@@ -234,24 +304,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* TRACKING RADAR PANEL */}
+      {/* SHAPESHIFTED RADAR DISPATCH (SEARCH ON LEFT, TELEMETRY MONITOR ON RIGHT) */}
       <section className="dark-panel">
-        <div>
-          <p className="eyebrow">Consignment radar</p>
-          <h2>
-            Verify status
-            <br />
-            and <em>custody.</em>
-          </h2>
-          <p>
-            Connected directly to airline airway bill systems and our London bonded warehouse management system (WMS).
-          </p>
-        </div>
+        <div className="track-form-box">
+          <div>
+            <p className="eyebrow">Consignment Telemetry</p>
+            <h2>
+              Verify status
+              <br />
+              and <em>custody.</em>
+            </h2>
+            <p>
+              Connected directly to airline airway bill systems and our London bonded warehouse management system (WMS).
+            </p>
+          </div>
 
-        <div className="track-form">
-          <form onSubmit={track}>
-            <label htmlFor="track-number">Waybill or reference</label>
-            <div>
+          <form onSubmit={handleTrack}>
+            <label htmlFor="track-number">Waybill or Bonded Reference</label>
+            <div className="track-input-line">
               <input
                 id="track-number"
                 type="text"
@@ -264,8 +334,79 @@ export default function Home() {
                 <Arrow />
               </button>
             </div>
-            {notice && <small>{notice}</small>}
           </form>
+
+          <div className="track-presets">
+            <span>Sample waybills:</span>
+            <button
+              type="button"
+              className="track-preset-btn"
+              onClick={() => {
+                setTracking("BRX-9482-GB");
+                setTelemetry({
+                  code: "BRX-9482-GB",
+                  sector: "London Heathrow (LHR) → New York (JFK)",
+                  carrier: "Flight BX-402 (Boeing 777F)",
+                  status: "Airborne — Transatlantic Sector",
+                  eta: "Today, 18:45 EST",
+                  custody: "Heathrow Cargo Apron Stand 14",
+                  compliance: "UK CDS Green Channel Export Clearance"
+                });
+              }}
+            >
+              BRX-9482-GB (Air Cargo)
+            </button>
+            <button
+              type="button"
+              className="track-preset-btn"
+              onClick={() => {
+                setTracking("LON-WH-7710");
+                setTelemetry({
+                  code: "LON-WH-7710",
+                  sector: "Rotterdam Europort → London Terminal",
+                  carrier: "Dedicated Articulated Inbound Unit",
+                  status: "Held in Bonded Racking — Duty Suspended",
+                  eta: "In Facility (Available for Call-Off)",
+                  custody: "45a Great North Way (Aisle 4, Bay 14)",
+                  compliance: "HMRC Type U Customs Warehouse (Ref: CW-GB-7710)"
+                });
+              }}
+            >
+              LON-WH-7710 (Bonded Pallet)
+            </button>
+          </div>
+        </div>
+
+        {/* Live Telemetry Display Card */}
+        <div className="radar-telemetry-box">
+          <div className="telemetry-row">
+            <span>WAYBILL REF</span>
+            <b style={{ color: "var(--accent)" }}>{telemetry.code}</b>
+          </div>
+          <div className="telemetry-row">
+            <span>TRANSIT SECTOR</span>
+            <b>{telemetry.sector}</b>
+          </div>
+          <div className="telemetry-row">
+            <span>PAYLOAD CARRIER</span>
+            <b>{telemetry.carrier}</b>
+          </div>
+          <div className="telemetry-row">
+            <span>CURRENT STATUS</span>
+            <b style={{ color: "#38bdf8" }}>{telemetry.status}</b>
+          </div>
+          <div className="telemetry-row">
+            <span>ESTIMATED ARRIVAL</span>
+            <b>{telemetry.eta}</b>
+          </div>
+          <div className="telemetry-row">
+            <span>LOCATION / STAND</span>
+            <b>{telemetry.custody}</b>
+          </div>
+          <div className="telemetry-row">
+            <span>CUSTOMS COMPLIANCE</span>
+            <b style={{ color: "#4ade80" }}>{telemetry.compliance}</b>
+          </div>
         </div>
       </section>
 

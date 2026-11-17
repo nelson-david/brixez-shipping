@@ -9,6 +9,16 @@ const Arrow = () => <span className="arrow">↗</span>;
 
 export default function Home() {
   const [tracking, setTracking] = useState("BRX-9482-GB");
+  const [subEmail, setSubEmail] = useState("");
+  const [subStatus, setSubStatus] = useState<"idle" | "success">("idle");
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (subEmail.trim()) {
+      setSubStatus("success");
+    }
+  };
+
   const [telemetry, setTelemetry] = useState({
     code: "BRX-9482-GB",
     sector: "London Heathrow (LHR) → New York (JFK)",
@@ -480,6 +490,50 @@ export default function Home() {
             <span>CUSTOMS COMPLIANCE</span>
             <b style={{ color: "#4ade80" }}>{telemetry.compliance}</b>
           </div>
+        </div>
+      </section>
+
+      {/* PRE-FOOTER SUBSCRIBE / DISPATCH CIRCULAR */}
+      <section className="subscribe-strip">
+        <div className="subscribe-content">
+          <div className="eyebrow">
+            Brixez Dispatch Circular <span>•</span> Heathrow &amp; London NW4
+          </div>
+          <h2>
+            Subscribe to flight manifests &amp; customs circulars.
+          </h2>
+          <p>
+            Weekly operational intelligence on transatlantic air cargo capacity, Heathrow stand allocations, and HMRC bonded warehouse regulatory updates.
+          </p>
+        </div>
+
+        <div className="subscribe-form-wrap">
+          {subStatus === "success" ? (
+            <div className="subscribe-success">
+              <b>✓ Subscribed to Brixez Dispatch Circular</b>
+              <span>Operational bulletins will be dispatched to {subEmail}.</span>
+            </div>
+          ) : (
+            <form className="subscribe-form" onSubmit={handleSubscribe}>
+              <div className="subscribe-input-group">
+                <input
+                  type="email"
+                  className="subscribe-input"
+                  placeholder="Enter corporate email address"
+                  value={subEmail}
+                  onChange={(e) => setSubEmail(e.target.value)}
+                  required
+                />
+                <button type="submit" className="subscribe-btn">
+                  Subscribe <Arrow />
+                </button>
+              </div>
+              <div className="subscribe-meta">
+                <span>Direct dispatch from London NW4</span>
+                <span>UK GDPR compliant • Zero spam</span>
+              </div>
+            </form>
+          )}
         </div>
       </section>
 

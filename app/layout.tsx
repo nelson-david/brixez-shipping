@@ -1,72 +1,64 @@
 import type { Metadata, Viewport } from "next";
-import { Plus_Jakarta_Sans, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { DM_Sans, DM_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const dmMono = DM_Mono({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-display",
+  weight: ["400", "500"],
+  variable: "--font-dm-mono",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-mono",
+  weight: ["500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#0b1329",
+  themeColor: "#071120",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 5,
 };
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://brixez.com"),
   title: {
     default: "Brixez — Flight Shipping & London Bonded Warehousing",
-    template: "%s | Brixez Logistics",
+    template: "%s · Brixez",
   },
   description:
-    "Brixez provides high-velocity commercial flight shipping from London Heathrow (LHR) and 125,000 sq ft HMRC Type U bonded warehousing at 45a Great North Way, London NW4 1PT. Telephone: +44 785 357 3182.",
-  applicationName: "Brixez Logistics",
-  authors: [{ name: "Brixez Logistics Ltd" }],
-  creator: "Brixez Logistics Ltd",
-  publisher: "Brixez Logistics Ltd",
+    "Brixez provides high-velocity flight shipping and 125,000 sq ft HMRC Type U bonded warehousing at 45a Great North Way, London NW4 1PT. Telephone: +44 785 357 3182.",
+  applicationName: "Brixez",
   keywords: [
     "Brixez",
     "Brixez shipping",
     "flight shipping London",
-    "air freight London Heathrow",
+    "air freight Heathrow",
     "bonded warehousing London NW4 1PT",
     "45a Great North Way",
-    "HMRC Type U customs warehouse",
-    "Heathrow air cargo dispatch",
-    "Boeing 777F freighter charters",
-    "AOG emergency courier",
+    "HMRC customs warehouse",
     "customs clearance UK",
-    "London logistics terminal",
+    "freight forwarding",
   ],
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/favicon.svg", type: "image/svg+xml" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
     ],
   },
-  manifest: "/site.webmanifest",
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -74,89 +66,14 @@ export const metadata: Metadata = {
     siteName: "Brixez",
     title: "Brixez — Flight Shipping & London Bonded Warehousing",
     description:
-      "Coordinating scheduled commercial air cargo rotations from London Heathrow alongside 125,000 sq ft of HMRC Type U bonded storage at 45a Great North Way, London NW4 1PT. Telephone: +44 785 357 3182.",
-    images: [
-      {
-        url: "/icon-512.png",
-        width: 512,
-        height: 512,
-        alt: "Brixez Flight Shipping & London Bonded Warehousing",
-      },
-    ],
+      "High-velocity flight shipping and 125,000 sq ft HMRC Type U bonded warehousing at 45a Great North Way, London NW4 1PT.",
   },
   twitter: {
     card: "summary_large_image",
     title: "Brixez — Flight Shipping & London Bonded Warehousing",
     description:
-      "Commercial air freight out of London Heathrow & 125,000 sq ft HMRC Type U bonded storage at 45a Great North Way, London NW4 1PT.",
-    images: ["/icon-512.png"],
+      "Flight shipping & 125,000 sq ft bonded warehousing at 45a Great North Way, London NW4 1PT. Call +44 785 357 3182.",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-  alternates: {
-    canonical: "https://brixez.com",
-  },
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LogisticsService",
-  "name": "Brixez Logistics Ltd",
-  "alternateName": "Brixez",
-  "url": "https://brixez.com",
-  "logo": "https://brixez.com/icon-512.png",
-  "telephone": "+447853573182",
-  "email": "dispatch@brixez.com",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "45a Great North Way",
-    "addressLocality": "London",
-    "addressRegion": "Greater London",
-    "postalCode": "NW4 1PT",
-    "addressCountry": "GB",
-  },
-  "geo": {
-    "@type": "GeoCoordinates",
-    "latitude": 51.5901,
-    "longitude": -0.2173,
-  },
-  "areaServed": [
-    { "@type": "Country", "name": "United Kingdom" },
-    { "@type": "Country", "name": "United States" },
-    { "@type": "Country", "name": "United Arab Emirates" },
-    { "@type": "Country", "name": "Singapore" },
-  ],
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday",
-    ],
-    "opens": "00:00",
-    "closes": "23:59",
-  },
-  "serviceType": [
-    "Flight Shipping",
-    "Commercial Air Cargo",
-    "HMRC Type U Bonded Warehousing",
-    "Customs Brokerage & CDS Compliance",
-    "AOG Emergency Aerospace Logistics",
-    "Pharmaceutical GDP Cold Chain",
-  ],
 };
 
 export default function RootLayout({
@@ -165,16 +82,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className="font-sans antialiased bg-slate-50 text-slate-900 selection:bg-blue-600 selection:text-white">
-        {children}
-      </body>
+    <html lang="en" className={`${dmSans.variable} ${dmMono.variable} ${playfair.variable}`}>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BrixezLogo from "./BrixezLogo";
 
 export default function Footer() {
   return (
@@ -6,8 +7,11 @@ export default function Footer() {
       <div className="footer-top">
         <div>
           <Link className="brand" href="/" style={{ color: "#ffffff", marginBottom: "14px" }}>
-            BRIX<span>EZ</span>
-            <i />
+            <BrixezLogo size={27} inverted className="brand-icon" />
+            <span className="brand-text">
+              BRIX<span>EZ</span>
+              <i />
+            </span>
           </Link>
           <p style={{ maxWidth: "420px" }}>
             Flight cargo and HMRC-bonded warehousing.

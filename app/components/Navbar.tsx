@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import BrixezLogo from "./BrixezLogo";
 
 const Arrow = () => <span className="arrow">↗</span>;
 
@@ -8,9 +9,12 @@ export default function Navbar() {
   return (
     <header className="nav">
       <div className="brand-wrapper">
-        <Link className="brand" href="/">
-          BRIX<span>EZ</span>
-          <i />
+        <Link className="brand" href="/" aria-label="Brixez Home">
+          <BrixezLogo size={27} className="brand-icon" />
+          <span className="brand-text">
+            BRIX<span>EZ</span>
+            <i />
+          </span>
         </Link>
         <span className="brand-badge hidden sm:inline-block">London NW4 1PT</span>
       </div>
